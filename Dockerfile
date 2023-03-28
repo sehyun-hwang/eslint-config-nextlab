@@ -1,12 +1,10 @@
 FROM node:alpine
 
-RUN yarn global add eslint
-
 WORKDIR /mnt
 COPY package.json yarn.lock ./
 
 RUN yarn --ignore-scripts
 
-COPY .eslint.json index.js ./
+COPY typescript.eslint.json eslint.json index.* ./
 
-RUN eslint -c .eslint.json index.js
+RUN yarn eslint -c eslint.json index.*

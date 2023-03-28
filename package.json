@@ -7,11 +7,13 @@
         "preinstall": "yarn install --mode update-lockfile --ignore-scripts"
     },
     "devDependencies": {
+        "@eslint/eslintrc": "^2.0.1",
         "@typescript-eslint/eslint-plugin": "^5.55.0",
         "@typescript-eslint/parser": "^5.55.0",
         "eslint": "^8.23.0",
         "eslint-config-airbnb-base": "^15.0.0",
         "eslint-plugin-import": "^2.26.0",
         "typescript": "^5.0.2"
-    }
+    },
+    "version": "0.0.0"
 }

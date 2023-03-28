@@ -3,6 +3,25 @@
         "es2022": true
     },
     "extends": "airbnb-base",
+    "overrides": [
+        {
+            "extends": [
+                "./typescript.eslint.json"
+            ],
+            "files": "*.ts"
+        },
+        {
+            "extends": [
+                "./typescript.eslint.json"
+            ],
+            "files": "*.tsx",
+            "parserOptions": {
+                "ecmaFeatures": {
+                    "jsx": true
+                }
+            }
+        }
+    ],
     "parserOptions": {
         "ecmaVersion": "latest",
         "sourceType": "module"
@@ -16,6 +35,14 @@
         "import/extensions": "off",
         "no-console": "off",
         "no-promise-executor-return": "off",
+        "no-unused-expressions": [
+            "error",
+            {
+                "allowShortCircuit": true,
+                "allowTaggedTemplates": true,
+                "allowTernary": true
+            }
+        ],
         "nonblock-statement-body-position": [
             "warn",
             "below"
@@ -28,41 +55,6 @@
         "semi": [
             "warn",
             "always"
-        ],
-        "no-unused-expressions": [
-            "error",
-            {
-                "allowShortCircuit": true,
-                "allowTernary": true,
-                "allowTaggedTemplates": true
-            }
         ]
-    },
-    "overrides": [
-        {
-            "files": "*.ts",
-            "extends": [
-                "plugin:@typescript-eslint/recommended"
-            ],
-            "parser": "@typescript-eslint/parser",
-            "plugins": [
-                "@typescript-eslint"
-            ]
-        },
-        {
-            "files": "*.tsx",
-            "extends": [
-                "plugin:@typescript-eslint/recommended"
-            ],
-            "parser": "@typescript-eslint/parser",
-            "parserOptions": {
-                "ecmaFeatures": {
-                    "jsx": true
-                }
-            },
-            "plugins": [
-                "@typescript-eslint"
-            ]
-        }
-    ]
+    }
 }
