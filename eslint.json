@@ -55,6 +55,7 @@
         "semi": [
             "warn",
             "always"
-        ]
+        ],
+        "no-nested-ternary": "off"
     }
 }
