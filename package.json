@@ -1,19 +1,14 @@
 {
-    "name": "nextlab-eslint",
-    "eslintConfig": {
-        "extends": "airbnb-base"
-    },
-    "scripts": {
-        "preinstall": "yarn install --mode update-lockfile --ignore-scripts"
-    },
-    "devDependencies": {
-        "@eslint/eslintrc": "^2.0.1",
-        "@typescript-eslint/eslint-plugin": "^5.55.0",
-        "@typescript-eslint/parser": "^5.55.0",
-        "eslint": "^8.23.0",
-        "eslint-config-airbnb-base": "^15.0.0",
-        "eslint-plugin-import": "^2.26.0",
-        "typescript": "^5.0.2"
-    },
-    "version": "0.0.0"
+  "devDependencies": {
+    "@eslint/eslintrc": "^2.0.3",
+    "@typescript-eslint/eslint-plugin": "^5.60.0",
+    "@typescript-eslint/parser": "^5.60.0",
+    "eslint": "^8.43.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-plugin-import": "^2.27.5",
+    "typescript": "^5.1.3"
+  },
+  "name": "nextlab-eslint",
+  "type": "module",
+  "version": "0.0.0"
 }

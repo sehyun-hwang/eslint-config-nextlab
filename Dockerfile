@@ -1,10 +1,12 @@
 FROM node:alpine
 
 WORKDIR /mnt
-COPY package.json yarn.lock ./
+COPY package.json pnpm-lock.yaml ./
 
-RUN yarn --ignore-scripts
+RUN corepack enable pnpm \
+    && pnpm i --force --frozen-lockfile
 
-COPY typescript.eslint.json eslint.json index.* ./
+COPY eslint* index.* ./
 
-RUN yarn eslint -c eslint.json index.*
+ENV ESLINT_USE_FLAT_CONFIG=true
+RUN pnpm eslint index.*
