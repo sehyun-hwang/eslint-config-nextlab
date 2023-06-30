@@ -61,12 +61,6 @@ export default [{
   },
   rules: jsRules,
 },
-{
-  files: ['*config.js', '*config.ts'],
-  rules: {
-    'import/no-extraneous-dependencies': 'off',
-  },
-},
 
 {
   files: ['*config.js', '*config.ts'],
@@ -96,5 +90,5 @@ export default [{
   },
 },
 
-...localConfig,
+...(localConfig || []),
 ];

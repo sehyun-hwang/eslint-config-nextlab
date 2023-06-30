@@ -1,2 +1,2 @@
-const num: number = 1;
-console.log();
+const num = 0;
+console.log(num as string);

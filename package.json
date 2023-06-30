@@ -4,17 +4,15 @@
     "@typescript-eslint/eslint-plugin": "^5.60.1",
     "@typescript-eslint/parser": "^5.60.1",
     "eslint-config-airbnb-base": "^15.0.0",
+        "eslint-import-resolver-typescript": "^3.5.5",
     "eslint-plugin-import": "^2.27.5",
     "typescript": "^5.1.6"
   },
   "name": "nextlab-eslint",
   "scripts": {
     "lint": "ESLINT_USE_FLAT_CONFIG=true eslint eslint.config.js",
-    "test": "pnpm lint test/hello.js && ! pnpm lint test/error.*"
+    "test": "pnpm lint test/hello.* && ! pnpm lint test/error.*"
   },
   "type": "module",
-  "version": "0.0.0",
-  "dependencies": {
-    "eslint-import-resolver-typescript": "^3.5.5"
-  }
+  "version": "0.0.0"
 }
