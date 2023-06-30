@@ -86,6 +86,7 @@ export default [{
   rules: {
     ...tsPlugin.configs['eslint-recommended'].rules,
     ...tsPlugin.configs.recommended.rules,
+    ...jsRules,
     ...tsRules,
   },
   settings: {

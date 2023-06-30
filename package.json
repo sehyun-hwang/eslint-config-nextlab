@@ -13,5 +13,8 @@
     "test": "pnpm lint test/hello.js && ! pnpm lint test/error.*"
   },
   "type": "module",
-  "version": "0.0.0"
+  "version": "0.0.0",
+  "dependencies": {
+    "eslint-import-resolver-typescript": "^3.5.5"
+  }
 }
