@@ -3,6 +3,8 @@ import { fileURLToPath } from 'url';
 
 import { FlatCompat } from '@eslint/eslintrc';
 import importPlugin from 'eslint-plugin-import';
+import tsPlugin from '@typescript-eslint/eslint-plugin';
+import tsParser from '@typescript-eslint/parser';
 
 import { jsRules, tsRules } from './config/index.js';
 
@@ -20,63 +22,78 @@ const { default: localConfig } = await import(
   .catch(console.log) || {};
 
 /**
-@see https://github.com/import-js/eslint-plugin-import/issues/2556#issuecomment-1419518561
+import plugin:
+@see https://github.com/import-js/eslint-plugin-import/issues/2556
+
+typescript config:
+@see https://stackoverflow.com/a/74279098
 */
-export default [
-  {
-    // All eslint-plugin-import config is here
-    languageOptions: {
-      parserOptions: {
-        // Eslint doesn't supply ecmaVersion in `parser.js` `context.parserOptions`
-        // This is required to avoid ecmaVersion < 2015 error or 'import' / 'export' error
-        ecmaVersion: 'latest',
-        sourceType: 'module',
-      },
-    },
-    plugins: {
-      patchedImport: importPlugin,
-    },
-    settings: {
-      // This will do the trick
-      'import/parsers': {
-        espree: ['.js', '.cjs', '.mjs', '.jsx'],
-      },
-      'import/resolver': {
-        node: true,
-      },
-    },
-  },
-
-  ...compat.extends('airbnb-base'),
-
-  {
-    files: ['**/*.js'],
-    languageOptions: {
+export default [{
+  // All eslint-plugin-import config is here
+  languageOptions: {
+    parserOptions: {
+      // Eslint doesn't supply ecmaVersion in `parser.js` `context.parserOptions`
+      // This is required to avoid ecmaVersion < 2015 error or 'import' / 'export' error
       ecmaVersion: 'latest',
-    },
-    rules: jsRules,
-  },
-  {
-    files: ['*config.js', '*config.ts'],
-    rules: {
-      'import/no-extraneous-dependencies': 'off',
+      sourceType: 'module',
     },
   },
+  plugins: {
+    patchedImport: importPlugin,
+  },
+  settings: {
+    // This will do the trick
+    'import/parsers': {
+      espree: ['.js', '.cjs', '.mjs', '.jsx'],
+    },
+    'import/resolver': {
+      node: true,
+    },
+  },
+},
 
-  {
-    files: ['*config.js', '*config.ts'],
-    rules: {
-      'import/no-extraneous-dependencies': 'off',
+...compat.extends('airbnb-base'),
+
+{
+  files: ['**/*.js'],
+  languageOptions: {
+    ecmaVersion: 'latest',
+  },
+  rules: jsRules,
+},
+{
+  files: ['*config.js', '*config.ts'],
+  rules: {
+    'import/no-extraneous-dependencies': 'off',
+  },
+},
+
+{
+  files: ['*config.js', '*config.ts'],
+  rules: {
+    'import/no-extraneous-dependencies': 'off',
+  },
+},
+
+{
+  files: ['**/*.ts'],
+  languageOptions: {
+    parser: tsParser,
+  },
+  plugins: {
+    '@typescript-eslint': tsPlugin,
+  },
+  rules: {
+    ...tsPlugin.configs['eslint-recommended'].rules,
+    ...tsPlugin.configs.recommended.rules,
+    ...tsRules,
+  },
+  settings: {
+    'import/resolver': {
+      typescript: true,
     },
   },
+},
 
-  {
-    files: ['**/*.ts'],
-    languageOptions: {
-      ecmaVersion: 'latest',
-    },
-    rules: tsRules,
-  },
-
-  ...localConfig,
+...localConfig,
 ];
