@@ -3,13 +3,13 @@
   "overrides": [
     {
       "extends": [
-        "./typescript.eslint.json"
+        "./config/typescript.eslintrc.json"
       ],
       "files": "*.ts"
     },
     {
       "extends": [
-        "./typescript.eslint.json"
+        "./config/typescript.eslintrc.json"
       ],
       "files": "*.tsx",
       "parserOptions": {
