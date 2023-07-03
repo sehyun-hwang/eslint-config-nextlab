@@ -1,7 +1,6 @@
 {
   "extends": "airbnb-base",
-  "overrides": [
-    {
+  "overrides": [{
       "extends": [
         "./config/typescript.eslintrc.json"
       ],
@@ -26,7 +25,12 @@
     ],
     "curly": "off",
     "import/extensions": "off",
+    "import/order": [
+      "warn",
+      {}
+    ],
     "no-console": "off",
+    "no-nested-ternary": "off",
     "no-promise-executor-return": "off",
     "no-unused-expressions": [
       "error",
@@ -49,10 +53,21 @@
       "warn",
       "always"
     ],
-    "no-nested-ternary": "off",
-    "import/order": [
+    "sort-imports": [
       "warn",
-      {}
+      {
+        "allowSeparatedGroups": true
+      }
+    ],
+    "sort-vars": "warn",
+    "no-underscore-dangle": [
+      "warn",
+      {
+        "allow": [
+          "__filename",
+          "__dirname"
+        ]
+      }
     ]
   }
 }
