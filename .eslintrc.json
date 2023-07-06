@@ -1,6 +1,7 @@
 {
   "extends": "airbnb-base",
-  "overrides": [{
+  "overrides": [
+    {
       "extends": [
         "./config/typescript.eslintrc.json"
       ],
@@ -27,7 +28,9 @@
     "import/extensions": "off",
     "import/order": [
       "warn",
-      {}
+      {
+        "newlines-between": "always"
+      }
     ],
     "no-console": "off",
     "no-nested-ternary": "off",
