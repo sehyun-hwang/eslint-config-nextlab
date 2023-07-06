@@ -8,5 +8,19 @@
     "@typescript-eslint"
   ],
   "rules": {
+    "indent": "off",
+    "@typescript-eslint/indent": [
+      "error",
+      2,
+      {
+        "SwitchCase": 1,
+        "flatTernaryExpressions": false,
+        "ignoredNodes": [
+          "PropertyDefinition[decorators]",
+          "TSUnionType",
+          "FunctionExpression[params]:has(Identifier[decorators])"
+        ]
+      }
+    ]
   }
 }
