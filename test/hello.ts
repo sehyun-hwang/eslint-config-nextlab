@@ -1,2 +1,3 @@
-const num = 0;
-console.log(num as string);
+// Test TS parsing
+const num = 0 as const;
+console.log(num);
