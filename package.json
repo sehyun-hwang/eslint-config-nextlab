@@ -1,6 +1,6 @@
 {
   "bin": "script/cli.js",
-  "devDependencies": {
+  "dependencies": {
     "@eslint/eslintrc": "^2.0.3",
     "@typescript-eslint/eslint-plugin": "^5.60.1",
     "@typescript-eslint/parser": "^5.60.1",
