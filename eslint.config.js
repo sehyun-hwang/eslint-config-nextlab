@@ -22,11 +22,11 @@ const { default: importConfig } = await import(airbnbBase.extends.find(x => x.en
 importConfig.plugins = [];
 
 /**
-import plugin:
-@see https://github.com/import-js/eslint-plugin-import/issues/2556
-
-typescript config:
-@see https://stackoverflow.com/a/74279098
+* import plugin:
+* @see https://github.com/import-js/eslint-plugin-import/issues/2556
+*
+* typescript config:
+* @see https://stackoverflow.com/a/74279098
 */
 export default [
   {
@@ -63,13 +63,6 @@ export default [
       ecmaVersion: 'latest',
     },
     rules: jsRules,
-  },
-
-  {
-    files: ['*config.js', '*config.ts'],
-    rules: {
-      'import/no-extraneous-dependencies': 'off',
-    },
   },
 
   {

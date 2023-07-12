@@ -26,6 +26,15 @@
     ],
     "curly": "off",
     "import/extensions": "off",
+    "import/no-extraneous-dependencies": [
+      "error",
+      {
+        "devDependencies": [
+          "**/*.test.*",
+          "**/*.config.*"
+        ]
+      }
+    ],
     "import/order": [
       "warn",
       {
@@ -35,6 +44,15 @@
     "no-console": "off",
     "no-nested-ternary": "off",
     "no-promise-executor-return": "off",
+    "no-underscore-dangle": [
+      "warn",
+      {
+        "allow": [
+          "__filename",
+          "__dirname"
+        ]
+      }
+    ],
     "no-unused-expressions": [
       "error",
       {
@@ -62,15 +80,6 @@
         "allowSeparatedGroups": true
       }
     ],
-    "sort-vars": "warn",
-    "no-underscore-dangle": [
-      "warn",
-      {
-        "allow": [
-          "__filename",
-          "__dirname"
-        ]
-      }
-    ]
+    "sort-vars": "warn"
   }
 }
