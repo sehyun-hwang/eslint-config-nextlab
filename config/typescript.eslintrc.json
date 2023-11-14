@@ -1,6 +1,6 @@
 {
   "extends": [
-    "plugin:@typescript-eslint/recommended",
+    "plugin:@typescript-eslint/strict-type-checked",
     "plugin:import/typescript"
   ],
   "parser": "@typescript-eslint/parser",

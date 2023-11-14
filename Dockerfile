@@ -18,4 +18,4 @@ RUN eslint -v \
     && pnpm test
 
 LABEL org.opencontainers.image.source = "https://github.com/nextlab-ai/public-releases"
-CMD ["pnpm", "lint"]
+CMD ["nextlab-eslint"]

@@ -1,1 +1,3 @@
-console.log();
+import util from 'util';
+
+console.log(util);

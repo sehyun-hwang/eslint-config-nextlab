@@ -9,10 +9,17 @@
 
 ## Usage
 
+### CLI
+
+```sh
+yarn global add https://github.com/nextlab-ai/public-releases/tree/eslint
+nextlab-eslint src --fix
+```
+
 ### VS Code
 
 - Refer to [this Notion site](https://www.notion.so/nextlabai/ES-Lint-dd6726189c7e40c5b2b760ae183ec292?pvs=4) for the use in with [VS Code](https://code.visualstudio.com/)'
-- npm install in your local machine is possible via [`eslint` branch at public-releases repository](https://github.com/nextlab-ai/public-releases/tree/eslint)
+- `yarn glboal install` in your local machine is possible via [`eslint` branch at public-releases repository](https://github.com/nextlab-ai/public-releases/tree/eslint)
 
 ### CI
 
