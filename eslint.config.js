@@ -33,6 +33,9 @@ const config = [{
     import: importPlugin,
   },
   settings: {
+    'import/parsers': {
+      espree: ['.js', '.cjs', '.mjs', '.jsx'],
+    },
     'import/resolver': {
       exports: {
         require: false,
@@ -84,11 +87,20 @@ const config = [{
 
 config[SYMBOL] = true;
 
+function throwIfModuleFound(error) {
+  if (error.code !== 'ERR_MODULE_NOT_FOUND')
+    throw error;
+}
+
 async function mergeLocalConfig() {
   if (__dirname === process.cwd())
     return;
   const { default: localConfig } = await import(process.cwd() + '/eslint.config.js')
-    .catch(console.log) || {};
+    .then(x => x, error => {
+      throwIfModuleFound(error);
+      return import(process.cwd() + '/eslint.config.mjs');
+    })
+    .catch(throwIfModuleFound) || {};
   if (!localConfig)
     return;
   if (localConfig[SYMBOL])
