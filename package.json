@@ -14,7 +14,8 @@
   "name": "nextlab-eslint",
   "scripts": {
     "lint": "ESLINT_USE_FLAT_CONFIG=true eslint -c eslint.config.js eslint.config.js script",
-    "test": "export NODE_OPTIONS=--experimental-import-meta-resolve && node script/cli.js --no-inline-config test/hello.* && node script/cli.js --report-unused-disable-directives test/error.*"
+    "test": "export NODE_OPTIONS=--experimental-import-meta-resolve && node script/cli.js --no-inline-config test/hello.* && node script/cli.js --report-unused-disable-directives test/error.*",
+    "test.docker": "nextlab-eslint --no-inline-config test/hello.* && nextlab-eslint --report-unused-disable-directives test/error.*"
   },
   "type": "module",
   "version": "0.1.0"

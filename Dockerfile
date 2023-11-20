@@ -15,7 +15,11 @@ ENV ESLINT_USE_FLAT_CONFIG=true \
     NODE_OPTIONS=--experimental-import-meta-resolve
 RUN eslint -v \
     && nextlab-eslint -v \
-    && pnpm test
+    && pnpm test \
+    && cp -rv script test package.json tsconfig.json /tmp/ \
+    && ln -s $PWD/node_modules /tmp/ \
+    && cd /tmp \
+    && pnpm test.docker
 
 LABEL org.opencontainers.image.source = "https://github.com/nextlab-ai/public-releases"
 CMD ["nextlab-eslint"]

@@ -33,6 +33,7 @@ const config = [{
     import: importPlugin,
   },
   settings: {
+    // https://github.com/import-js/eslint-plugin-import/issues/2556#issuecomment-1663038247
     'import/parsers': {
       espree: ['.js', '.cjs', '.mjs', '.jsx'],
     },
