@@ -26,6 +26,7 @@
     ],
     "curly": "off",
     "import/extensions": "off",
+    "@typescript-eslint/unbound-method": "off",
     "@typescript-eslint/no-misused-promises": [
       "error",
       {
