@@ -26,6 +26,18 @@
     ],
     "curly": "off",
     "import/extensions": "off",
+    "@typescript-eslint/no-misused-promises": [
+      "error",
+      {
+        "checksVoidReturn": {
+          "arguments": false,
+          "attributes": true,
+          "properties": true,
+          "returns": false,
+          "variables": true
+        }
+      }
+    ],
     "import/no-extraneous-dependencies": [
       "error",
       {
