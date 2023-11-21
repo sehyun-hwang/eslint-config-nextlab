@@ -76,7 +76,6 @@ const config = [{
     ...tsPlugin.configs['strict-type-checked'].rules,
     ...jsRules,
     ...tsRules,
-    '@typescript-eslint/no-floating-promises': 'error',
   },
   settings: {
     'import/resolver': {

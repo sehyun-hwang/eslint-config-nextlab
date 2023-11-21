@@ -9,6 +9,21 @@
   ],
   "rules": {
     "indent": "off",
+    "@typescript-eslint/no-floating-promises": "error",
+    "@typescript-eslint/no-misused-promises": [
+      "error",
+      {
+        "checksVoidReturn": {
+          "arguments": false,
+          "attributes": true,
+          "properties": true,
+          "returns": false,
+          "variables": true
+        }
+      }
+    ],
+    "@typescript-eslint/unbound-method": "off",
+    "@typescript-eslint/no-unsafe-assignment":"off",
     "@typescript-eslint/indent": [
       "error",
       2,
