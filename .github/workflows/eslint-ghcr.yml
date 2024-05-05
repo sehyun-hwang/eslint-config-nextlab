@@ -3,6 +3,10 @@ on:
   push:
   workflow_dispatch:
 
+permissions:
+  contents: read
+  packages: write
+
 jobs:
   eslint-ghcr:
     name: Build and push eslint to ghcr
