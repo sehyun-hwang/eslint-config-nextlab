@@ -21,5 +21,5 @@ RUN eslint -v \
     && cd /tmp \
     && pnpm test.docker
 
-LABEL org.opencontainers.image.source = "https://github.com/nextlab-ai/public-releases"
+LABEL org.opencontainers.image.source = "https://github.com/sehyun-hwang/eslint-config-nextlab"
 CMD ["nextlab-eslint"]

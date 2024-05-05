@@ -1,0 +1,40 @@
+name: Build and push eslint to ghcr
+on:
+  push:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  packages: write
+
+jobs:
+  eslint-ghcr:
+    name: Build and push eslint to ghcr
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Docker metadata
+        id: metadata
+        uses: docker/metadata-action@v5
+        with:
+          images: ghcr.io/${{ github.repository_owner }}/eslint
+
+      - name: Login to ghcr
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{github.actor}}
+          password: ${{secrets.GITHUB_TOKEN}}
+
+      - name: Get current date
+        run: |
+          echo "DATE=$(date --rfc-3339=date)" >> ${GITHUB_ENV}
+
+      - name: Build and push to ghcr
+        uses: docker/build-push-action@v5
+        with:
+          push: true
+          tags: ghcr.io/${{ github.repository_owner }}/eslint:${{ env.DATE }}
+          labels: ${{ steps.meta.outputs.labels }}
