@@ -7,5 +7,5 @@ import './blank';
 
 console.log(util);
 
-const num = 0 as const;
+const num = 0;
 console.log(num);

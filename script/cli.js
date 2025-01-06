@@ -1,6 +1,6 @@
 #!/usr/bin/env node
-import { fileURLToPath } from 'url';
 import { join } from 'path';
+import { fileURLToPath } from 'url';
 
 export function resolveImportMeta(path) {
   if (!import.meta.resolve)

@@ -1,22 +1,20 @@
-import { dirname, join } from 'path';
+import { dirname } from 'path';
 import { fileURLToPath } from 'url';
 
-import { FlatCompat } from '@eslint/eslintrc';
-import airbnbBase from 'eslint-config-airbnb-base';
-import importPlugin from 'eslint-plugin-import';
-import tsParser from '@typescript-eslint/parser';
-import tsPlugin from '@typescript-eslint/eslint-plugin';
+import tseslint from 'typescript-eslint';
 
-import { jsRules, tsRules } from './config/index.js';
-// import airbnbRules from './config/airbnb-rules.cjs';
-
-const { default: importConfig } = await import(airbnbBase.extends.find(x => x.endsWith('imports.js')));
-importConfig.plugins = [];
+import { jsRules, tsRules } from './config/eslint.config.js';
+import patchedAirbnb from './config/patched-airbnb-base.js';
 
 const SYMBOL = Symbol('nextlab-eslint');
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
-const compat = new FlatCompat();
+
+const tseslintStrictTypeChecked = tseslint.configs.strictTypeChecked.find(({ name }) => name === 'typescript-eslint/strict-type-checked');
+const patchedTseslintStrictTypeChecked = tseslint.configs.strictTypeChecked
+  .filter(x => x !== tseslintStrictTypeChecked)
+  .map(x => (x.name === 'typescript-eslint/eslint-recommended' ? {
+    ...x,
+    rules: { ...x.rules, ...tseslintStrictTypeChecked.rules },
+  } : x));
 
 const config = [{
   // All eslint-plugin-import config is here
@@ -29,26 +27,9 @@ const config = [{
     },
     globals: {},
   },
-  plugins: {
-    import: importPlugin,
-  },
-  settings: {
-    // https://github.com/import-js/eslint-plugin-import/issues/2556#issuecomment-1663038247
-    'import/parsers': {
-      espree: ['.js', '.cjs', '.mjs', '.jsx'],
-    },
-    'import/resolver': {
-      exports: {
-        require: false,
-        browser: false,
-        unsafe: false,
-      },
-    },
-  },
 },
 
-...compat.extends(join(__dirname, '/config/importless-airbnb-base.cjs')),
-...compat.config(importConfig),
+...patchedAirbnb,
 
 {
   files: ['**/*.js'],
@@ -58,29 +39,23 @@ const config = [{
   rules: jsRules,
 },
 
+...patchedTseslintStrictTypeChecked,
+...tseslint.configs.stylistic,
+
 {
   files: ['**/*.ts'],
-  languageOptions: {
-    parser: tsParser,
-    parserOptions: {
-      project: true,
-    },
-  },
   plugins: {
-    '@typescript-eslint': tsPlugin,
-    ts: tsPlugin,
+    '@typescript-eslint': tseslint.plugin,
+  },
+  languageOptions: {
+    parser: tseslint.parser,
+    parserOptions: {
+      projectService: true,
+    },
   },
   rules: {
-    ...tsPlugin.configs.base.rules,
-    ...tsPlugin.configs['eslint-recommended'].rules,
-    ...tsPlugin.configs['strict-type-checked'].rules,
     ...jsRules,
     ...tsRules,
-  },
-  settings: {
-    'import/resolver': {
-      typescript: true,
-    },
   },
 },
 ];
@@ -93,6 +68,8 @@ function throwIfModuleFound(error) {
 }
 
 async function mergeLocalConfig() {
+  const __filename = fileURLToPath(import.meta.url);
+  const __dirname = dirname(__filename);
   if (__dirname === process.cwd())
     return;
   const { default: localConfig } = await import(process.cwd() + '/eslint.config.js')
@@ -110,7 +87,7 @@ async function mergeLocalConfig() {
   config.push(...localConfig);
 }
 
-// console.log(config);
+console.log(config);
 await mergeLocalConfig();
 
 export default config;
