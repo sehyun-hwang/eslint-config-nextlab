@@ -9,6 +9,7 @@ export const jsRules = {
     'as-needed',
   ],
   curly: 'off',
+  'import/extensions': 'off',
   'import/no-extraneous-dependencies': [
     'error',
     {
