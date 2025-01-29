@@ -1,20 +1,21 @@
 {
   "bin": "script/cli.js",
   "dependencies": {
-    "@eslint/eslintrc": "^2.1.3",
-    "@typescript-eslint/eslint-plugin": "^6.9.1",
-    "@typescript-eslint/parser": "^6.9.1",
-    "eslint": "^8.52.0",
+    "@eslint/compat": "^1.2.4",
+    "@eslint/eslintrc": "^3.2.0",
+    "@stylistic/eslint-plugin": "^2.12.1",
+    "eslint": "^9.17.0",
     "eslint-config-airbnb-base": "^15.0.0",
     "eslint-import-resolver-exports": "1.0.0-beta.5",
-    "eslint-import-resolver-typescript": "^3.6.1",
-    "eslint-plugin-import": "^2.29.0",
-    "typescript": "^5.2.2"
+    "eslint-import-resolver-typescript": "^3.7.0",
+    "eslint-plugin-import": "^2.31.0",
+    "typescript": "^5.7.2",
+    "typescript-eslint": "^8.19.0"
   },
   "name": "nextlab-eslint",
   "scripts": {
-    "lint": "ESLINT_USE_FLAT_CONFIG=true eslint -c eslint.config.js eslint.config.js script",
-    "test": "export NODE_OPTIONS=--experimental-import-meta-resolve && node script/cli.js --no-inline-config test/hello.* && node script/cli.js --report-unused-disable-directives test/error.*",
+    "lint": "eslint -c eslint.config.js eslint.config.js config script",
+    "test": "node script/cli.js --no-inline-config test/hello.* && node script/cli.js --report-unused-disable-directives test/error.*",
     "test.docker": "nextlab-eslint --no-inline-config test/hello.* && nextlab-eslint --report-unused-disable-directives test/error.*"
   },
   "type": "module",

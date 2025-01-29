@@ -1,4 +1,4 @@
-FROM node:alpine
+FROM node:lts-alpine
 
 WORKDIR /mnt
 COPY package.json pnpm-lock.yaml script/install-cli.cjs ./
