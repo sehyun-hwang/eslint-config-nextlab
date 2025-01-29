@@ -1,5 +1,7 @@
 // @ts-check
 
+/* eslint sort-keys: "error" */
+
 /** @type {import('eslint').Linter.RulesRecord} */
 export const jsRules = {
   'arrow-parens': [
@@ -7,7 +9,6 @@ export const jsRules = {
     'as-needed',
   ],
   curly: 'off',
-  'import/extensions': 'off',
   'import/no-extraneous-dependencies': [
     'error',
     {
@@ -20,11 +21,11 @@ export const jsRules = {
   'import/order': [
     'warn',
     {
-      'newlines-between': 'always',
       alphabetize: {
-        order: 'asc',
         caseInsensitive: true,
+        order: 'asc',
       },
+      'newlines-between': 'always',
     },
   ],
   'no-console': 'off',
@@ -61,6 +62,13 @@ export const jsRules = {
     'warn',
     'always',
   ],
+  'sort-imports': ['warn',
+    {
+      allowSeparatedGroups: true,
+      ignoreCase: true,
+      ignoreDeclarationSort: true,
+    },
+  ],
   'sort-vars': 'warn',
 };
 
@@ -84,13 +92,13 @@ const tsConfigFile = [{
       'error',
       2,
       {
-        SwitchCase: 1,
         flatTernaryExpressions: false,
         ignoredNodes: [
           'PropertyDefinition[decorators]',
           'TSUnionType',
           'FunctionExpression[params]:has(Identifier[decorators])',
         ],
+        SwitchCase: 1,
       },
     ],
   },

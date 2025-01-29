@@ -87,7 +87,7 @@ async function mergeLocalConfig() {
   config.push(...localConfig);
 }
 
-console.log(config);
+// console.log(config);
 await mergeLocalConfig();
 
 export default config;
