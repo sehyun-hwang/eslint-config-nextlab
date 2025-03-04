@@ -1,6 +1,7 @@
 {
   "bin": "script/cli.js",
   "dependencies": {
+    "@eslint-stylistic/metadata": "^4.2.0",
     "@eslint/compat": "^1.2.4",
     "@eslint/eslintrc": "^3.2.0",
     "@stylistic/eslint-plugin": "^2.12.1",
@@ -19,5 +20,5 @@
     "test.docker": "nextlab-eslint --no-inline-config test/hello.* && nextlab-eslint --report-unused-disable-directives test/error.*"
   },
   "type": "module",
-  "version": "0.1.0"
+  "version": "0.1.1"
 }

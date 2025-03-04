@@ -11,8 +11,6 @@ RUN sed -i "s;basedir=.*;basedir=$PWD/node_modules/.bin;" node_modules/.bin/esli
     && node install-cli.cjs
 
 COPY . .
-ENV ESLINT_USE_FLAT_CONFIG=true \
-    NODE_OPTIONS=--experimental-import-meta-resolve
 RUN eslint -v \
     && nextlab-eslint -v \
     && pnpm test \
