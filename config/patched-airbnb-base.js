@@ -1,30 +1,17 @@
+import assert from 'assert/strict';
+
 import { fixupConfigRules } from '@eslint/compat';
 import { FlatCompat } from '@eslint/eslintrc';
+import { packages } from '@eslint-stylistic/metadata';
+import stylistic from '@stylistic/eslint-plugin';
 import airbnbBase from 'eslint-config-airbnb-base';
 import airbnbImportConfig from 'eslint-config-airbnb-base/rules/imports';
 import importPlugin from 'eslint-plugin-import';
 
 const compat = new FlatCompat();
+const stylelisticMeta = packages.find(({ name }) => name === '@stylistic/eslint-plugin');
 
-const legacyRules = {
-  '@typescript-eslint/no-throw-literal': '@typescript-eslint/only-throw-error',
-  ...Object.fromEntries([
-    'brace-style',
-    'comma-dangle',
-    'comma-spacing',
-    'func-call-spacing',
-    'indent',
-    'keyword-spacing',
-    'lines-between-class-members',
-    'no-extra-semi',
-    'object-curly-spacing',
-    'quotes',
-    'semi',
-    'space-before-blocks',
-    'space-before-function-paren',
-    'space-infix-ops',
-  ].map(name => [`@typescript-eslint/${name}`, `stylistic/${name}`])),
-};
+assert(stylelisticMeta);
 
 const fixupLegacyRules = configs => {
   configs.forEach(config => {
@@ -34,14 +21,16 @@ const fixupLegacyRules = configs => {
     const { rules } = config;
     if (!rules)
       return;
-    Object.entries(legacyRules).forEach(([legacyRule, newRule]) => {
-      const ruleConfig = rules[legacyRule];
-      if (ruleConfig) {
-        delete rules[legacyRule];
-        if (!rules[newRule]) {
-          rules[newRule] = ruleConfig;
-        }
-      }
+
+    stylelisticMeta.rules.forEach(rule => {
+      const ruleConfig = rules[rule.name];
+      if (!ruleConfig)
+        return;
+      delete rules[rule.name];
+      if (rules[rule.ruleId])
+        console.log(`Legacy rule ${rule.name} not replace with ${rule.ruleId} due to conflict`, ruleConfig);
+      else
+        rules[rule.ruleId] = ruleConfig;
     });
   });
   return configs;
@@ -49,6 +38,11 @@ const fixupLegacyRules = configs => {
 
 export default [
   importPlugin.flatConfigs.recommended,
+  {
+    plugins: {
+      '@stylistic': stylistic,
+    },
+  },
   ...fixupLegacyRules(fixupConfigRules(compat.extends(
     ...airbnbBase.extends.filter(x => !x.endsWith('imports.js')),
   ))),
