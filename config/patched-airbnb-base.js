@@ -57,7 +57,9 @@ export default [
     plugins: [],
     settings: {
       'import/resolver': {
-        typescript: true,
+        typescript: {
+          alwaysTryTypes: true,
+        },
       },
     },
   }),
