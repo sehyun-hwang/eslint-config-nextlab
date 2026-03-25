@@ -29,6 +29,13 @@ export const jsRules = {
       'newlines-between': 'always',
     },
   ],
+  'max-len': ['error', 120, 2, {
+    ignoreComments: false,
+    ignoreRegExpLiterals: true,
+    ignoreStrings: true,
+    ignoreTemplateLiterals: true,
+    ignoreUrls: true,
+  }],
   'no-console': 'off',
   'no-nested-ternary': 'off',
   'no-promise-executor-return': 'off',
@@ -89,6 +96,18 @@ const tsConfigFile = [{
       },
     ],
     '@typescript-eslint/no-unsafe-assignment': 'off',
+    '@typescript-eslint/no-unused-vars': [
+      'error',
+      {
+        args: 'all',
+        argsIgnorePattern: '^_',
+        caughtErrors: 'all',
+        caughtErrorsIgnorePattern: '^_',
+        destructuredArrayIgnorePattern: '^_',
+        ignoreRestSiblings: true,
+        varsIgnorePattern: '^_',
+      },
+    ],
     indent: [
       'error',
       2,
