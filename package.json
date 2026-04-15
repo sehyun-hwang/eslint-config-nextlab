@@ -1,16 +1,16 @@
 {
   "bin": "script/cli.js",
   "dependencies": {
-    "@eslint/compat": "^1.4.1",
+    "@eslint/compat": "^2.0.5",
     "@eslint/eslintrc": "^3.3.5",
-    "@stylistic/eslint-plugin": "^2.13.0",
+    "@stylistic/eslint-plugin": "^5.10.0",
     "eslint": "^9.39.4",
     "eslint-config-airbnb-base": "^15.0.0",
     "eslint-import-resolver-exports": "1.0.0-beta.5",
-    "eslint-import-resolver-typescript": "^3.10.1",
+    "eslint-import-resolver-typescript": "^4.4.4",
     "eslint-plugin-import": "^2.32.0",
-    "typescript": "^5.9.3",
-    "typescript-eslint": "^8.57.1"
+    "typescript": "^6.0.2",
+    "typescript-eslint": "^8.58.2"
   },
   "name": "nextlab-eslint",
   "scripts": {
@@ -19,8 +19,8 @@
     "test.docker": "nextlab-eslint --no-inline-config test/hello.* && nextlab-eslint --report-unused-disable-directives test/error.*"
   },
   "type": "module",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "devDependencies": {
-    "@typescript-eslint/utils": "^8.57.1"
+    "@typescript-eslint/utils": "^8.58.2"
   }
 }
