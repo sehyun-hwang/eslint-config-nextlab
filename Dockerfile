@@ -1,7 +1,7 @@
 FROM node:lts-alpine
 
 WORKDIR /mnt
-COPY package.json pnpm-lock.yaml script/install-cli.cjs ./
+COPY package.json pnpm-lock.yaml pnpm-workspace.yaml script/install-cli.cjs ./
 RUN corepack enable pnpm \
     && pnpm i --force --frozen-lockfile \
     && pnpm store prune
@@ -11,8 +11,7 @@ RUN sed -i "s;basedir=.*;basedir=$PWD/node_modules/.bin;" node_modules/.bin/esli
     && node install-cli.cjs
 
 COPY . .
-ENV ESLINT_USE_FLAT_CONFIG=true \
-    NODE_OPTIONS=--experimental-import-meta-resolve
+ENV CI=true
 RUN eslint -v \
     && nextlab-eslint -v \
     && pnpm test \
