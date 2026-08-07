@@ -2,7 +2,7 @@ import { fixupConfigRules } from '@eslint/compat';
 import { FlatCompat } from '@eslint/eslintrc';
 import airbnbBase from 'eslint-config-airbnb-base';
 import airbnbImportConfig from 'eslint-config-airbnb-base/rules/imports';
-import importPlugin from 'eslint-plugin-import';
+import { importX as importPlugin } from 'eslint-plugin-import';
 
 const compat = new FlatCompat();
 
@@ -48,7 +48,14 @@ const fixupLegacyRules = configs => {
 };
 
 export default [
-  importPlugin.flatConfigs.recommended,
+  {
+    ...importPlugin.flatConfigs.recommended,
+    plugins: {
+      import: importPlugin,
+    },
+    rules: Object.fromEntries(Object.entries(importPlugin.flatConfigs.recommended.rules)
+      .map(([rule, config]) => [rule.replace('import-x/', 'import/'), config])),
+  },
   ...fixupLegacyRules(fixupConfigRules(compat.extends(
     ...airbnbBase.extends.filter(x => !x.endsWith('imports.js')),
   ))),
@@ -56,7 +63,7 @@ export default [
     ...airbnbImportConfig,
     plugins: [],
     settings: {
-      'import/resolver': {
+      'import-x/resolver': {
         typescript: {
           alwaysTryTypes: true,
         },
