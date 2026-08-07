@@ -6,7 +6,6 @@
     "@stylistic/eslint-plugin": "^5.10.0",
     "eslint": "^10.6.0",
     "eslint-config-airbnb-base": "^15.0.0",
-    "eslint-import-resolver-exports": "1.0.0-beta.5",
     "eslint-import-resolver-typescript": "^4.4.5",
     "eslint-plugin-import": "npm:eslint-plugin-import-x@^4.17.1",
     "typescript": "^6.0.3",
@@ -19,7 +18,7 @@
     "test.docker": "nextlab-eslint --no-inline-config test/hello.* && nextlab-eslint --report-unused-disable-directives test/error.*"
   },
   "type": "module",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "devDependencies": {
     "@typescript-eslint/utils": "^8.62.1"
   }
